@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pagamento-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pagamento
+  template:
+    metadata:
+      labels:
+        app: pagamento
+    spec:
+      containers:
+        - name: pagamento-container
+          image: alexandresampaio/pagamento-service-fase-4-myapp:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "1"  # This is the CPU limit
+            requests:
+              cpu: "0.5"  # This is the CPU reques
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres-svc:5432/postgres"
+            - name: GATEWAY_DATA_PAYMENT_NOTIFICATION
+              value: "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos/notifications"
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
+            - name: SERVER_PORT
+              value: "8080"
+            - name: TOKEN_APP
+              valueFrom:
+                secretKeyRef:
+                  name: payment-secret
+                  key: token
+
+

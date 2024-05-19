@@ -1,0 +1,7 @@
+resources:
+  - secret-payment.yml
+  - secret-postgress.yml
+  - statefulset-postgress.yml
+  - service-postgress.yml
+  - deployment-app.yml
+  - service-app.yml
