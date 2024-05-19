@@ -23,7 +23,10 @@ public class ConfirmPagamentoUsecase {
 
     private final PagamentoConfirmedEventPort pagamentoConfirmedEventPort;
 
-    public Pagamento confirm(Long paymentId) {
+    public Pagamento confirm(Long paymentId, String type){
+        if(type.equals("sandbox")){
+            return confirmSandbox(paymentId);
+        }
         PagamentoGateway pagamentoGateway = paymentGatewayPort.getPayment(paymentId);
         if (Objects.nonNull(pagamentoGateway)) {
             Pagamento pagamento = pagamentoRepositoryPort.get(Long.valueOf(pagamentoGateway.getIdExterno()));
@@ -37,6 +40,15 @@ public class ConfirmPagamentoUsecase {
             pagamentoConfirmedEventPort.notify(pagamento);
             return pagamento;
         }
+        return null;
+    }
+
+    private Pagamento confirmSandbox(Long paymentId) {
+        Pagamento pagamento = pagamentoRepositoryPort.get(paymentId);
+        pagamento.setGatewayId(1111L);
+        pagamento.setStatus(StatusEnum.PAGO);
+        pagamentoRepositoryPort.save(pagamento);
+        pagamentoConfirmedEventPort.notify(pagamento);
         return null;
     }
 }

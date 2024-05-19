@@ -25,9 +25,10 @@ public class CreatePagamentoUsecase {
 		pagamento.setStatus(StatusEnum.CREATED);
 		Pagamento  pagamentoCreated= pagamentoRepositoryPort.save(pagamento);
 		String qrcode = paymentGatewayPort.create(pagamentoCreated.getId().toString(), pagamento.getValor());
-		pagamento.setQrcode(qrcode);
-		pagamento.setStatus(StatusEnum.PENDING);
-		return pagamentoRepositoryPort.save(pagamento);
+		pagamentoCreated.setQrcode(qrcode);
+		pagamentoCreated.setStatus(StatusEnum.PENDING);
+		Pagamento pagamentoPending = pagamentoRepositoryPort.save(pagamentoCreated);
+		return pagamentoRepositoryPort.save(pagamentoPending);
 	}
 
 }

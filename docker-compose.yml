@@ -31,7 +31,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db-pagamento:5432/postgres
       - SERVER_PORT=8080
-      - TOKEN_APP=APP_USR-151362775144770-012219-ad26be97b5a2ceab5965aaf6409a0d70-1650421194
+      - TOKEN_APP=TEST-5398212567420993-012214-95396719e7fad729b801abb31b48da1d-40740335
       - GATEWAY_DATA_PAYMENT_NOTIFICATION=https://eog65tb4u88eyt7.m.pipedream.net
     depends_on:
       - db-pagamento

@@ -14,4 +14,5 @@ import lombok.*;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class QuickResponse {
     public String qrData;
+    public String inStoreOrderId;
 }
