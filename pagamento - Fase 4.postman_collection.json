@@ -1,0 +1,947 @@
+{
+	"info": {
+		"_postman_id": "9d29f30f-f904-40e5-a062-8ccb7adb9b42",
+		"name": "clientes - Fase 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10707183"
+	},
+	"item": [
+		{
+			"name": "clientes",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/cliente/1",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by cpf",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/cliente/cpf/111.111.111-00",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"cliente",
+								"cpf",
+								"111.111.111-00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/cliente",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \n    \"nome\": \"teste\",\n    \"cpf\" : \"111.111.111-00\",\n    \"telefone\": \"1199999-8888\",\n    \"endereco\": null,\n    \"email\": \"teste@teste.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/cliente",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post nome email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \n    \"nome\": \"teste\",\n    \"cpf\" : \"111.111.111-00\",\n    \"telefone\": \"1199999-8888\",\n    \"endereco\": null,\n    \"email\": \"teste@teste.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/cliente",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post cpf",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\" : \"222.222.222-00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/cliente",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "produtos",
+			"item": [
+				{
+					"name": "search categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/produtos?categoria=LANCHE",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "categoria",
+									"value": "LANCHE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/produtos",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "byId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/produtos/8",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"produtos",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post Lanche",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \n     \"nome\":\"hamburguer\",\n    \"categoria\":\"LANCHE\",\n    \"preco\":1.10,\n    \"descricao\":\"hamburguer e queijo\",\n    \"imagens\":[\n        \"teste.gif\",\n        \"teste.png\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/produtos",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post Bebida",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\":\"suco\",\n    \"categoria\":\"BEBIDA\",\n    \"preco\":0.90,\n    \"descricao\":\"suco\",\n    \"imagens\":[\n        \"teste.gif\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/produtos",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post Acompanhamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\":\"batata\",\n    \"categoria\":\"ACOMPANHAMENTO\",\n    \"preco\":2.00,\n    \"descricao\":\"batata frita\",\n    \"imagens\":[\n        \"teste.gif\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/produtos",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n  \n    \"nome\": \"coca\",\n    \"categoria\": \"BEBIDA\",\n    \"preco\": 2.99,\n    \"descricao\": \"Lata \",\n    \"imagens\": [\n        \"coca.gif\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/produtos/2",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"produtos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\":\"cheseburguer\",\n    \"categoria\":\"lanche\",\n    \"preco\":10.99,\n    \"descricao\":\"hamburguer e queijo\",\n    \"imagens\":[\n        \"teste.gif\",\n        \"teste.png\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/produtos/15",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"produtos",
+								"15"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pedidos",
+			"item": [
+				{
+					"name": "search status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos?status=CRIADO",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "CRIADO"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "byId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos/13",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cliente\":{\n      \"cpf\":\"111.111.111-00\"\n  },\n    \"itens\":[\n        {\n            \"produto\":{\n                \"id\":1\n            }\n        },\n        {\n            \"produto\":{\n                \"id\":2\n            }\n        },\n        {\n            \"produto\":{\n                \"id\":3\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add Items",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\n         {\n              \n                \"produto\": {\n                    \"id\": 1\n\n                }\n\n            }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos/12/add-items",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos",
+								"12",
+								"add-items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Items",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos/12/delete-item/36",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos",
+								"12",
+								"delete-item",
+								"36"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkout",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos/13/checkout?collector={{collector}}&pos={{pos}}",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos",
+								"13",
+								"checkout"
+							],
+							"query": [
+								{
+									"key": "collector",
+									"value": "{{collector}}"
+								},
+								{
+									"key": "pos",
+									"value": "{{pos}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "confirm - Webhook",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer APP_USR-151362775144770-012219-ad26be97b5a2ceab5965aaf6409a0d70-1650421194",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "collector",
+								"value": "1650421194",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "pos",
+								"value": "SUC001POS001",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos/notifications?id=15265121144&topic=merchant_order",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos",
+								"notifications"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "15265121144"
+								},
+								{
+									"key": "topic",
+									"value": "merchant_order"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paid - Webhook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos/notifications?id=71100859203&topic=payment",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos",
+								"notifications"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "71100859203"
+								},
+								{
+									"key": "topic",
+									"value": "payment"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos?status=RECEBIDO,CRIADO,EM_PREPARACAO,PRONTO",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "RECEBIDO,CRIADO,EM_PREPARACAO,PRONTO"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put em_preparacao",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \n    \"status\": \"EM_PREPARACAO\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos/1",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put pronto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \n    \"status\": \"PRONTO\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos/1",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put finalizado",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \n    \"status\": \"PRONTO\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ruqvuimgf2.execute-api.us-east-1.amazonaws.com/beta/pedidos/20",
+							"protocol": "https",
+							"host": [
+								"ruqvuimgf2",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"beta",
+								"pedidos",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "merchant order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{app_id}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cash_out\": {\n    \"amount\": 0\n  },\n  \"description\": \"Purchase description.\",\n  \"external_reference\": \"reference_12345\",\n  \"items\": [\n    {\n      \"sku_number\": \"A123K9191938\",\n      \"category\": \"marketplace\",\n      \"title\": \"Point Mini\",\n      \"description\": \"This is the Point Mini\",\n      \"unit_price\": 2,\n      \"quantity\": 1,\n      \"unit_measure\": \"unit\",\n      \"total_amount\": 2\n    }\n  ],\n  \"notification_url\": \"https://eodwbpv9wkmuhla.m.pipedream.net\",\n  \"title\": \"Product order\",\n  \"total_amount\": 2\n}"
+						},
+						"url": {
+							"raw": "https://api.mercadopago.com/merchant_orders/71228623120",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mercadopago",
+								"com"
+							],
+							"path": [
+								"merchant_orders",
+								"71228623120"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "payments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer APP_USR-151362775144770-012219-ad26be97b5a2ceab5965aaf6409a0d70-1650421194"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cash_out\": {\n    \"amount\": 0\n  },\n  \"description\": \"Purchase description.\",\n  \"external_reference\": \"reference_12345\",\n  \"items\": [\n    {\n      \"sku_number\": \"A123K9191938\",\n      \"category\": \"marketplace\",\n      \"title\": \"Point Mini\",\n      \"description\": \"This is the Point Mini\",\n      \"unit_price\": 2,\n      \"quantity\": 1,\n      \"unit_measure\": \"unit\",\n      \"total_amount\": 2\n    }\n  ],\n  \"notification_url\": \"https://eodwbpv9wkmuhla.m.pipedream.net\",\n  \"title\": \"Product order\",\n  \"total_amount\": 2\n}"
+						},
+						"url": {
+							"raw": "https://api.mercadopago.com/v1/payments/71100859203",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mercadopago",
+								"com"
+							],
+							"path": [
+								"v1",
+								"payments",
+								"71100859203"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "collector",
+			"value": "1650421194"
+		},
+		{
+			"key": "pos",
+			"value": "SUC001POS001"
+		},
+		{
+			"key": "app_id",
+			"value": "151362775144770"
+		}
+	]
+}

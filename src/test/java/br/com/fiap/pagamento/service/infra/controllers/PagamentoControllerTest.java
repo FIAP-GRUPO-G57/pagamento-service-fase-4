@@ -71,9 +71,9 @@ public class PagamentoControllerTest {
         Pagamento pagamento = new Pagamento();
         pagamento.setId(1L);
 
-        when(confirmPagamentoUsecase.confirm(anyLong())).thenReturn(pagamento);
+        when(confirmPagamentoUsecase.confirm(anyLong(), anyString())).thenReturn(pagamento);
 
-        ResponseEntity<Pagamento> result = pagamentoController.notification(1L, "payment");
+        ResponseEntity<Pagamento> result = pagamentoController.notification(1L, "payment", "other");
 
         assertEquals(pagamento.getId(), result.getBody().getId());
     }

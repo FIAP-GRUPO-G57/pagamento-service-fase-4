@@ -45,10 +45,10 @@ public class PagamentoController {
     }
 
     @PostMapping(value = "/notifications")
-    public ResponseEntity<Pagamento> notification(@RequestParam(name = "id") Long id, @RequestParam(name = "topic") String topic) {
+    public ResponseEntity<Pagamento> notification(@RequestParam(name = "id") Long id, @RequestParam(name = "topic") String topic, @RequestParam(name = "type", required = false) String type) {
         Pagamento pagamento = null;
         if (("payment").equals(topic) && Objects.nonNull(id)) {
-            pagamento = confirmPagamentoUsecase.confirm(id);
+            pagamento = confirmPagamentoUsecase.confirm(id, type);
         }
         return ResponseEntity.ok(pagamento);
     }
