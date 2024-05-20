@@ -49,6 +49,6 @@ public class ConfirmPagamentoUsecase {
         pagamento.setStatus(StatusEnum.PAGO);
         pagamentoRepositoryPort.save(pagamento);
         pagamentoConfirmedEventPort.notify(pagamento);
-        return null;
+        return pagamento;
     }
 }

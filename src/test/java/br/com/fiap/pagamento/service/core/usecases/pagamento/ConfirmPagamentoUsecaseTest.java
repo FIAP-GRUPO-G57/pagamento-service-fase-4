@@ -14,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 public class ConfirmPagamentoUsecaseTest {
@@ -37,45 +36,46 @@ public class ConfirmPagamentoUsecaseTest {
     }
 
     @Test
-    void shouldSavePaymentWithStatusPaidWhenGatewayStatusIsApproved() {
+    void shouldConfirmPaymentWhenTypeIsNotSandbox() {
         PagamentoGateway pagamentoGateway = new PagamentoGateway();
         pagamentoGateway.setStatus("approved");
         pagamentoGateway.setIdExterno("1");
 
-        Pagamento pagamento = PagamentoMock.createPagamento();
+        Pagamento pagamento = new Pagamento();
+        pagamento.setId(1L);
 
         when(paymentGatewayPort.getPayment(anyLong())).thenReturn(pagamentoGateway);
         when(pagamentoRepositoryPort.get(anyLong())).thenReturn(pagamento);
 
-        confirmPagamentoUsecase.confirm(1L, "");
+        Pagamento result = confirmPagamentoUsecase.confirm(1L, "");
 
         verify(pagamentoRepositoryPort).save(pagamento);
-        assertEquals(StatusEnum.PAGO, pagamento.getStatus());
+        verify(pagamentoConfirmedEventPort).notify(pagamento);
+        assertEquals(StatusEnum.PAGO, result.getStatus());
     }
 
     @Test
-    void shouldSavePaymentWithStatusRejectedWhenGatewayStatusIsNotApproved() {
-        PagamentoGateway pagamentoGateway = new PagamentoGateway();
-        pagamentoGateway.setStatus("not approved");
-        pagamentoGateway.setIdExterno("1");
+    void shouldConfirmSandboxPayment() {
+        Pagamento pagamento = new Pagamento();
+        pagamento.setId(1L);
 
-        Pagamento pagamento = PagamentoMock.createPagamento();
-
-        when(paymentGatewayPort.getPayment(anyLong())).thenReturn(pagamentoGateway);
         when(pagamentoRepositoryPort.get(anyLong())).thenReturn(pagamento);
 
-        confirmPagamentoUsecase.confirm(1L, "");
+        Pagamento result = confirmPagamentoUsecase.confirm(1L, "sandbox");
 
         verify(pagamentoRepositoryPort).save(pagamento);
-        assertEquals(StatusEnum.REJEITADO, pagamento.getStatus());
+        verify(pagamentoConfirmedEventPort).notify(pagamento);
+        assertEquals(StatusEnum.PAGO, result.getStatus());
     }
 
     @Test
-    void shouldNotSavePaymentWhenGatewayDoesNotReturnPayment() {
+    void shouldNotConfirmPaymentWhenGatewayDoesNotReturnPayment() {
         when(paymentGatewayPort.getPayment(anyLong())).thenReturn(null);
 
-        confirmPagamentoUsecase.confirm(1L, "");
+        Pagamento result = confirmPagamentoUsecase.confirm(1L, "");
 
         verify(pagamentoRepositoryPort, never()).save(any());
+        verify(pagamentoConfirmedEventPort, never()).notify(any());
+        assertEquals(null, result);
     }
 }

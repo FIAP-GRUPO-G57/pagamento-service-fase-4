@@ -23,7 +23,6 @@ public class Order {
     public String externalReference;
     public ArrayList<Item> items;
     public String notificationUrl;
-    public Sponsor sponsor;
     public String title;
     public BigDecimal totalAmount;
 }

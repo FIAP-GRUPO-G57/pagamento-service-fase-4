@@ -32,8 +32,7 @@ public class MercadoPagoRestClient implements PaymentGatewayPort {
 
 	private final GatewayPaymentConfiguration gatewayPayment;
 
-	@Autowired
-	private RestTemplate restTemplate;
+	private final RestTemplate restTemplate;
 
     public String create(String reference, BigDecimal totalAmount) {
 		URI uri = getUri();
@@ -51,7 +50,6 @@ public class MercadoPagoRestClient implements PaymentGatewayPort {
 		try {
 			HttpEntity<Order> entity = new HttpEntity<>(getHttpHeaders(gatewayPayment.getToken()));
 			ResponseEntity<PaymentsResponse> result = restTemplate.exchange(String.format(GET_PAYMENTS, id), HttpMethod.GET, entity, PaymentsResponse.class);
-
 			log.info("response payment mp: " + result.toString());
 
 			PaymentsResponse paymentsResponse = result.getBody();
