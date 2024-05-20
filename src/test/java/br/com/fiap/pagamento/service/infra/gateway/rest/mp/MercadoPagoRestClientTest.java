@@ -43,8 +43,9 @@ public class MercadoPagoRestClientTest {
     //@Test
     void shouldReturnQrDataWhenCreateIsCalled() {
         String expectedQrData = "qrData";
+        String inStoreOrderId = "inStoreOrderId";
         when(restTemplate.postForEntity(any(), any(), any()))
-                .thenReturn(ResponseEntity.ok(new QuickResponse(expectedQrData)));
+                .thenReturn(ResponseEntity.ok(new QuickResponse(expectedQrData,inStoreOrderId)));
 
         String qrData = mercadoPagoRestClient.create("reference", BigDecimal.ONE);
 
