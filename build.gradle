@@ -54,7 +54,7 @@ dependencies {
 
 sonar {
 	properties {
-		property "sonar.projectKey", "FIAP-GRUPO-G57_pagamento-fase-4"
+		property "sonar.projectKey", "FIAP-GRUPO-G57_pagamento-service-fase-4"
 		property "sonar.organization", "fiap-grupo-g57"
 		property "sonar.host.url", "https://sonarcloud.io"
 		property "sonar.token", System.getenv("SONAR_TOKEN")
