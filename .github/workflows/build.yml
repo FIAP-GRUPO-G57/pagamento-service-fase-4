@@ -25,15 +25,15 @@ jobs:
 
       - name: Build with Gradle
         run: |
-          ./gradlew build --warning-mode all
+          ./gradlew build --warning-mode al
 
       - name: Run JaCoCo
-        run: mvn jacoco:report
+        run: ./gradlew test jacocoTestReport
 
       - name: List JaCoCo Report
-        run: ls -alh target/site/jacoco/
+        run: ls -alh build/reports/jacoco/test/
 
       - name: SonarQube Scan
-        run: mvn sonar:sonar -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+        run: ./gradlew sonar -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml --warning-mode all
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
