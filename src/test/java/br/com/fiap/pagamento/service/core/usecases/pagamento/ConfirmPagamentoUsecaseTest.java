@@ -47,7 +47,7 @@ public class ConfirmPagamentoUsecaseTest {
         when(paymentGatewayPort.getPayment(anyLong())).thenReturn(pagamentoGateway);
         when(pagamentoRepositoryPort.get(anyLong())).thenReturn(pagamento);
 
-        confirmPagamentoUsecase.confirm(1L);
+        confirmPagamentoUsecase.confirm(1L, "");
 
         verify(pagamentoRepositoryPort).save(pagamento);
         assertEquals(StatusEnum.PAGO, pagamento.getStatus());
@@ -64,7 +64,7 @@ public class ConfirmPagamentoUsecaseTest {
         when(paymentGatewayPort.getPayment(anyLong())).thenReturn(pagamentoGateway);
         when(pagamentoRepositoryPort.get(anyLong())).thenReturn(pagamento);
 
-        confirmPagamentoUsecase.confirm(1L);
+        confirmPagamentoUsecase.confirm(1L, "");
 
         verify(pagamentoRepositoryPort).save(pagamento);
         assertEquals(StatusEnum.REJEITADO, pagamento.getStatus());
@@ -74,7 +74,7 @@ public class ConfirmPagamentoUsecaseTest {
     void shouldNotSavePaymentWhenGatewayDoesNotReturnPayment() {
         when(paymentGatewayPort.getPayment(anyLong())).thenReturn(null);
 
-        confirmPagamentoUsecase.confirm(1L);
+        confirmPagamentoUsecase.confirm(1L, "");
 
         verify(pagamentoRepositoryPort, never()).save(any());
     }
