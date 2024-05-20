@@ -4,7 +4,6 @@ import br.com.fiap.pagamento.mock.PagamentoMock;
 import br.com.fiap.pagamento.service.core.domain.entities.PagamentoGateway;
 import br.com.fiap.pagamento.service.infra.gateways.rest.mp.MercadoPagoRestClient;
 import br.com.fiap.pagamento.service.infra.gateways.rest.mp.dto.order.QuickResponse;
-import br.com.fiap.pagamento.service.infra.gateways.rest.mp.dto.payment.Order;
 import br.com.fiap.pagamento.service.infra.gateways.rest.mp.dto.payment.PaymentsResponse;
 import br.com.fiap.pagamento.service.main.configuration.GatewayPaymentConfiguration;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,7 +40,7 @@ public class MercadoPagoRestClientTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    //@Test
+    @Test
     void shouldReturnQrDataWhenCreateIsCalled() {
         String expectedQrData = "qrData";
         String inStoreOrderId = "inStoreOrderId";
@@ -52,7 +52,7 @@ public class MercadoPagoRestClientTest {
         assertEquals(expectedQrData, qrData);
     }
 
-    //@Test
+    @Test
     void shouldReturnPagamentoGatewayWhenGetPaymentIsCalled() {
 
         PaymentsResponse paymentsResponse = PaymentsResponse.builder().id(PagamentoMock.GATEWAY_ID).externalReference(PagamentoMock.ID.toString()).status(PagamentoMock.statusPago.name()).build();
@@ -71,4 +71,19 @@ public class MercadoPagoRestClientTest {
 
         assertEquals(expectedPagamentoGateway.getIdExterno(), pagamentoGateway.getIdExterno());
     }
+
+    @Test
+    void shouldReturnNullWhenGetPaymentIsCalledAndExceptionOccurs() {
+        when(restTemplate.exchange(
+                ArgumentMatchers.anyString(),
+                ArgumentMatchers.any(HttpMethod.class),
+                ArgumentMatchers.any(HttpEntity.class),
+                ArgumentMatchers.<Class<PaymentsResponse>>any()))
+                .thenThrow(RuntimeException.class);
+
+        PagamentoGateway pagamentoGateway = mercadoPagoRestClient.getPayment(1L);
+
+        assertNull(pagamentoGateway);
+    }
+
 }
