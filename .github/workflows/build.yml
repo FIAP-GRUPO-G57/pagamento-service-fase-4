@@ -23,8 +23,9 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
-      - name: Build with Maven
-        run: mvn clean verify
+      - name: Build with Gradle
+        run: |
+          ./gradlew build --warning-mode all
 
       - name: Run JaCoCo
         run: mvn jacoco:report
