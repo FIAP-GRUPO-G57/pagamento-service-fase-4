@@ -19,6 +19,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - name: Set short git commit SHA
+        id: commit
+        uses: prompt/actions-commit-hash@v3
+        
       - name: Checkout code
         uses: actions/checkout@v3
 
