@@ -39,8 +39,8 @@ public class SQSConfig {
     }
 
     @Bean
-    public QueueMessagingTemplate queueMessagingTemplate(AmazonSQSAsync sqs) {
-        return new QueueMessagingTemplate(sqs);
+    public QueueMessagingTemplate queueMessagingTemplate() {
+        return new QueueMessagingTemplate(amazonSQSAsync());
     }
 
     @Bean

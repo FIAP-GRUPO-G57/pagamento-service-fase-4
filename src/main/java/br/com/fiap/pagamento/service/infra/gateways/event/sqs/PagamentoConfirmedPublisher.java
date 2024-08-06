@@ -27,7 +27,7 @@ public class PagamentoConfirmedPublisher implements PagamentoConfirmedEventPort 
 		log.info("Generating event : {}", pagamento);
 		SendMessageRequest sendMessageRequest = null;
 		try {
-			sendMessageRequest = new SendMessageRequest().withQueueUrl("http://localhost:4566/000000000000/payment-queue.fifo")
+			sendMessageRequest = new SendMessageRequest().withQueueUrl("http://localstack:4566/000000000000/payment-queue.fifo")
 					.withMessageBody(objectMapper.writeValueAsString(pagamento))
 					.withMessageGroupId("SampleMessage")
 					.withMessageDeduplicationId(UUID.randomUUID().toString().replace("-", ""));

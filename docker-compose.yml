@@ -19,6 +19,33 @@ services:
     networks:
       - pagamento-network
 
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  aws:
+    image: localstack/localstack
+    container_name: 'localstack'
+    hostname: localstack
+    environment:
+      - SERVICES=sqs
+      - DEFAULT_REGION=us-east-1
+      - AWS_DEFAULT_REGION=us-east-1
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - HOSTNAME_EXTERNAL=localstack
+      - EDGE_PORT=4566
+    ports:
+      - '4566:4566'
+      - "4571:4571"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:4566/_localstack/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - pagamento-network
   myapp:
     build:
       context: .
@@ -34,24 +61,13 @@ services:
       - TOKEN_APP=TEST-5398212567420993-012214-95396719e7fad729b801abb31b48da1d-40740335
       - GATEWAY_DATA_PAYMENT_NOTIFICATION=https://eog65tb4u88eyt7.m.pipedream.net
     depends_on:
-      - db-pagamento
+      db-pagamento:
+        condition: service_healthy
+      aws:
+        condition: service_healthy
     ports:
       - "8080:8080"
     networks:
       - pagamento-network
 
-  aws:
-    image: localstack/localstack
-    container_name: 'localstack'
-    hostname: localstack
-    environment:
-      - SERVICES=sqs
-      - DEFAULT_REGION=us-east-1
-      - AWS_DEFAULT_REGION=us-east-1
-      - DEBUG=1
-      - DATA_DIR=/tmp/localstack/data
-      - HOSTNAME_EXTERNAL=localstack
-    ports:
-      - '4566:4566'
-    networks:
-        - pagamento-network
+
