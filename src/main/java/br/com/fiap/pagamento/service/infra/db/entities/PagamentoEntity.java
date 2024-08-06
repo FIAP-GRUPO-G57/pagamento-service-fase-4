@@ -37,6 +37,9 @@ public class PagamentoEntity {
     @Enumerated(EnumType.STRING)
     private StatusEnum status;
 
+    @Column(name="gatewayId")
+    private Long gatewayId;
+
     @CreationTimestamp
     private LocalDateTime criacao;
 

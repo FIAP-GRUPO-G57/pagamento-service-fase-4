@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,5 +20,5 @@ public class PagamentoDto {
 	private StatusEnum status;
 	private String qrcode;
 
-	private Long paymentId;
+	private Long gatewayId;
 }

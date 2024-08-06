@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PagamentoConfirmedPublisherTest {
 
@@ -41,11 +42,11 @@ public class PagamentoConfirmedPublisherTest {
     }
 
     @Test
-    void shouldNotPublishEventWhenJsonProcessingExceptionOccurs() throws Exception {
+    void shouldNotPublishEventWhenJsonProcessingExceptionOccurs()  throws Exception{
         Pagamento pagamento = new Pagamento();
         when(objectMapper.writeValueAsString(pagamento)).thenThrow(new RuntimeException());
-
-        pagamentoConfirmedPublisher.notify(pagamento);
+        Exception exception = assertThrows(Exception.class,
+                ()->{pagamentoConfirmedPublisher.notify(pagamento);} );
 
         verify(amazonSQS, never()).sendMessage(any(SendMessageRequest.class));
     }

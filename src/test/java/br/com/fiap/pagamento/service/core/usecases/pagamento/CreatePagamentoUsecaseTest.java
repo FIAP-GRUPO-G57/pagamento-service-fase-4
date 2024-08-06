@@ -38,7 +38,7 @@ public class CreatePagamentoUsecaseTest {
         when(pagamentoRepositoryPort.findTopByReference(any())).thenReturn(null);
         when(paymentGatewayPort.create(any(), any())).thenReturn("qrcode");
 
-        Pagamento result = createPagamentoUsecase.create(pagamento);
+        Pagamento result = createPagamentoUsecase.create(pagamento, null);
 
         assertEquals(StatusEnum.PENDING, result.getStatus());
         assertEquals("qrcode", result.getQrcode());
@@ -50,7 +50,7 @@ public class CreatePagamentoUsecaseTest {
 
         when(pagamentoRepositoryPort.findTopByReference(any())).thenReturn(pagamento);
 
-        Pagamento result = createPagamentoUsecase.create(pagamento);
+        Pagamento result = createPagamentoUsecase.create(pagamento, null);
 
         verify(pagamentoRepositoryPort, never()).save(any());
         assertEquals(pagamento, result);

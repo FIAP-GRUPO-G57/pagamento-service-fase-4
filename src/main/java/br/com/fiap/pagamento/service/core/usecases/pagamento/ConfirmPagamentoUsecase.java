@@ -23,32 +23,36 @@ public class ConfirmPagamentoUsecase {
 
     private final PagamentoConfirmedEventPort pagamentoConfirmedEventPort;
 
-    public Pagamento confirm(Long paymentId, String type){
-        if(type.equals("sandbox")){
-            return confirmSandbox(paymentId);
-        }
-        PagamentoGateway pagamentoGateway = paymentGatewayPort.getPayment(paymentId);
-        if (Objects.nonNull(pagamentoGateway)) {
-            Pagamento pagamento = pagamentoRepositoryPort.get(Long.valueOf(pagamentoGateway.getIdExterno()));
-            pagamento.setGatewayId(pagamentoGateway.getPaymentId());
-            if ("approved".equals(pagamentoGateway.getStatus())) {
-                pagamento.setStatus(StatusEnum.PAGO);
-            } else {
-                pagamento.setStatus(StatusEnum.REJEITADO);
+    public Pagamento confirm(Long paymentId, String type) {
+        try{
+            PagamentoGateway pagamentoGateway = getPaymentGateway(paymentId, type);
+            if (Objects.nonNull(pagamentoGateway)) {
+                Pagamento pagamento = pagamentoRepositoryPort.get(Long.valueOf(pagamentoGateway.getIdExterno()));
+                pagamento.setGatewayId(pagamentoGateway.getPaymentId());
+                if ("approved".equals(pagamentoGateway.getStatus())) {
+                    pagamento.setStatus(StatusEnum.PAGO);
+                } else {
+                    pagamento.setStatus(StatusEnum.REJEITADO);
+                }
+                pagamentoRepositoryPort.save(pagamento);
+                pagamentoConfirmedEventPort.notify(pagamento);
+                return pagamento;
             }
-            pagamentoRepositoryPort.save(pagamento);
-            pagamentoConfirmedEventPort.notify(pagamento);
-            return pagamento;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return null;
     }
 
-    private Pagamento confirmSandbox(Long paymentId) {
-        Pagamento pagamento = pagamentoRepositoryPort.get(paymentId);
-        pagamento.setGatewayId(1111L);
-        pagamento.setStatus(StatusEnum.PAGO);
-        pagamentoRepositoryPort.save(pagamento);
-        pagamentoConfirmedEventPort.notify(pagamento);
-        return pagamento;
+    private PagamentoGateway getPaymentGateway(Long paymentId, String type) {
+        PagamentoGateway pagamentoGateway = PagamentoGateway.builder()
+                .idExterno(paymentId.toString())
+                .status(paymentId % 2 == 0 ? "approved" : "rejected")
+                .paymentId(Long.sum(paymentId, 1000))
+                .build();
+        if (type==null || !type.equals("sandbox")) {
+            pagamentoGateway = paymentGatewayPort.getPayment(paymentId);
+        }
+        return pagamentoGateway;
     }
 }

@@ -25,7 +25,7 @@ public class PagamentoPostgresqlRepository implements PagamentoRepositoryPort {
 	}
 
 	@Override
-	public Pagamento save(Pagamento pagamento) {
+	public Pagamento save(Pagamento pagamento){
 		return modelMapper.map(pagamentoRepository.save(modelMapper.map(pagamento, PagamentoEntity.class)), Pagamento.class);
 	}
 

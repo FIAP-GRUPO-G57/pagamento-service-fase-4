@@ -32,7 +32,7 @@ public class PagamentoMock {
                 .id(ID)
                 .reference(REFERENCE)
                 .valor(VALOR)
-                .paymentId(GATEWAY_ID)
+                .gatewayId(GATEWAY_ID)
                 .qrcode(QRCODE)
                 .status(status)
                 .build();
@@ -43,7 +43,7 @@ public class PagamentoMock {
                 .id(pagamentoDto.getId())
                 .reference(pagamentoDto.getReference())
                 .valor(pagamentoDto.getValor())
-                .gatewayId(pagamentoDto.getPaymentId())
+                .gatewayId(pagamentoDto.getGatewayId())
                 .qrcode(pagamentoDto.getQrcode())
                 .status(pagamentoDto.getStatus())
                 .build();
@@ -54,7 +54,7 @@ public class PagamentoMock {
                 .id(pagamento.getId())
                 .reference(pagamento.getReference())
                 .valor(pagamento.getValor())
-                .paymentId(pagamento.getGatewayId())
+                .gatewayId(pagamento.getGatewayId())
                 .qrcode(pagamento.getQrcode())
                 .status(pagamento.getStatus())
                 .build();

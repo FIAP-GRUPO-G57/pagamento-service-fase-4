@@ -39,8 +39,8 @@ public class PagamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<PagamentoDto> post(@Validated @RequestBody PagamentoDto PagamentoDto) {
-        Pagamento pagamento = createPagamentoUsecase.create(modelMapper.map(PagamentoDto, Pagamento.class));
+    public ResponseEntity<PagamentoDto> post(@Validated @RequestBody PagamentoDto PagamentoDto, @RequestParam(name = "type", required = false) String type) {
+        Pagamento pagamento = createPagamentoUsecase.create(modelMapper.map(PagamentoDto, Pagamento.class), type);
         return new ResponseEntity<PagamentoDto>(modelMapper.map(pagamento, PagamentoDto.class), HttpStatus.CREATED);
     }
 

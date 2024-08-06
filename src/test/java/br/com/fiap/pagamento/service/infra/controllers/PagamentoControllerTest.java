@@ -57,11 +57,11 @@ public class PagamentoControllerTest {
         Pagamento pagamento = new Pagamento();
         pagamento.setId(1L);
 
-        when(createPagamentoUsecase.create(any(Pagamento.class))).thenReturn(pagamento);
+        when(createPagamentoUsecase.create(any(Pagamento.class), any(String.class))).thenReturn(pagamento);
         when(modelMapper.map(any(PagamentoDto.class), eq(Pagamento.class))).thenReturn(PagamentoMock.toPagamento(pagamentoDto));
         when(modelMapper.map(any(Pagamento.class), eq(PagamentoDto.class))).thenReturn(PagamentoMock.toDto(pagamento));
 
-        ResponseEntity<PagamentoDto> result = pagamentoController.post(pagamentoDto);
+        ResponseEntity<PagamentoDto> result = pagamentoController.post(pagamentoDto, "sandbox");
 
         assertEquals(pagamento.getId(), result.getBody().getId());
     }

@@ -36,7 +36,7 @@ public class ConfirmPagamentoUsecaseTest {
     }
 
     @Test
-    void shouldConfirmPaymentWhenTypeIsNotSandbox() {
+    void shouldConfirmPaymentWhenTypeIsNotSandbox() throws Exception {
         PagamentoGateway pagamentoGateway = new PagamentoGateway();
         pagamentoGateway.setStatus("approved");
         pagamentoGateway.setIdExterno("1");
@@ -55,7 +55,7 @@ public class ConfirmPagamentoUsecaseTest {
     }
 
     @Test
-    void shouldConfirmSandboxPayment() {
+    void shouldConfirmSandboxPaymentRejeitado() throws Exception {
         Pagamento pagamento = new Pagamento();
         pagamento.setId(1L);
 
@@ -65,11 +65,25 @@ public class ConfirmPagamentoUsecaseTest {
 
         verify(pagamentoRepositoryPort).save(pagamento);
         verify(pagamentoConfirmedEventPort).notify(pagamento);
+        assertEquals(StatusEnum.REJEITADO, result.getStatus());
+    }
+
+    @Test
+    void shouldConfirmSandboxPaymentPago() throws Exception {
+        Pagamento pagamento = new Pagamento();
+        pagamento.setId(2L);
+
+        when(pagamentoRepositoryPort.get(anyLong())).thenReturn(pagamento);
+
+        Pagamento result = confirmPagamentoUsecase.confirm(2L, "sandbox");
+
+        verify(pagamentoRepositoryPort).save(pagamento);
+        verify(pagamentoConfirmedEventPort).notify(pagamento);
         assertEquals(StatusEnum.PAGO, result.getStatus());
     }
 
     @Test
-    void shouldNotConfirmPaymentWhenGatewayDoesNotReturnPayment() {
+    void shouldNotConfirmPaymentWhenGatewayDoesNotReturnPayment() throws Exception {
         when(paymentGatewayPort.getPayment(anyLong())).thenReturn(null);
 
         Pagamento result = confirmPagamentoUsecase.confirm(1L, "");

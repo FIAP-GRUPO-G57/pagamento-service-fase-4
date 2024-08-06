@@ -23,11 +23,11 @@ public class PagamentoConfirmedPublisher implements PagamentoConfirmedEventPort 
 	private ObjectMapper objectMapper;
 
 	@Override
-	public void notify(Pagamento pagamento) {
+	public void notify(Pagamento pagamento) throws Exception {
 		log.info("Generating event : {}", pagamento);
 		SendMessageRequest sendMessageRequest = null;
 		try {
-			sendMessageRequest = new SendMessageRequest().withQueueUrl("http://localhost:4566/000000000000/sample-queue.fifo")
+			sendMessageRequest = new SendMessageRequest().withQueueUrl("http://localhost:4566/000000000000/payment-queue.fifo")
 					.withMessageBody(objectMapper.writeValueAsString(pagamento))
 					.withMessageGroupId("SampleMessage")
 					.withMessageDeduplicationId(UUID.randomUUID().toString().replace("-", ""));
@@ -37,6 +37,7 @@ public class PagamentoConfirmedPublisher implements PagamentoConfirmedEventPort 
 			log.error("JsonProcessingException e : {} and stacktrace : {}", e.getMessage(), e);
 		} catch (Exception e) {
 			log.error("Exception ocurred while pushing event to sqs : {} and stacktrace ; {}", e.getMessage(), e);
+			throw new Exception("Exception notify", e);
 		}
 	}
 }
