@@ -22,7 +22,7 @@ jobs:
       - name: Set short git commit SHA
         id: commit
         uses: prompt/actions-commit-hash@v3
-        
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -54,7 +54,7 @@ jobs:
           path: build/libs
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -75,25 +75,8 @@ jobs:
           echo "Pushing image to ECR..."
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-      - name: Install kubectl
-        run: |
-          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-          chmod +x ./kubectl
-          sudo mv ./kubectl /usr/local/bin/kubectl
-
-      - name: Install aws-iam-authenticator
-        run: |
-          curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.18.9/2020-11-02/bin/linux/amd64/aws-iam-authenticator
-          chmod +x ./aws-iam-authenticator
-          sudo mv ./aws-iam-authenticator /usr/local/bin/
-
       - name: Update kube config
         run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
-
-      - name: Inspect kubectl context
-        run: |
-          kubectl config view
-          kubectl get nodes
 
       - name: Deploy to EKS
         env:
