@@ -6,7 +6,7 @@ Sonarcloud
 
 Zap scanning Report
 
-[Geracao do Pagamento](https://github.com/FIAP-GRUPO-G57/pagamento-service-fase-4/blob/main/zap-Geracao-Pagamento-Report-.html)
+[Geracao do Pagamento](https://rawcdn.githack.com/FIAP-GRUPO-G57/pagamento-service-fase-4/3032293a9359141e770915a3fb421af49ace1ca3/zap-Geracao-Pagamento-Report-.html)
 
 [Confirmacao do Pagamento](https://rawcdn.githack.com/FIAP-GRUPO-G57/pagamento-service-fase-4/105a7c61c5ee14878772f41b1eb63dcb6a57b02c/zap-Confirmacao-Pagamento.html)
 
