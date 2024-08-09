@@ -8,7 +8,7 @@ Zap scanning Report
 
 [Geracao do Pagamento](https://github.com/FIAP-GRUPO-G57/pagamento-service-fase-4/blob/main/zap-Geracao-Pagamento-Report-.html)
 
-[Confirmacao do Pagamento](https://github.com/FIAP-GRUPO-G57/pagamento-service-fase-4/blob/main/zap-Confirmacao-Pagamento.html)
+[Confirmacao do Pagamento](https://rawcdn.githack.com/FIAP-GRUPO-G57/pagamento-service-fase-4/105a7c61c5ee14878772f41b1eb63dcb6a57b02c/zap-Confirmacao-Pagamento.html)
 
 
 
